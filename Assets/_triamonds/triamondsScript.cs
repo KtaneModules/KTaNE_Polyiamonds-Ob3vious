@@ -306,16 +306,19 @@ public class triamondsScript : MonoBehaviour {
    
     IEnumerator TwitchHandleForcedSolve()
     {
-        yield return true;
         if (input.Count() != 0)
         {
             Buttons[input.First()].OnInteract();
-            yield return null;
+            yield return new WaitForSeconds(0.1f);
         }
         for (int i = 0; i < 3; i++)
         {
             Buttons[answerpos[i]].OnInteract();
-            yield return null;
+            yield return new WaitForSeconds(0.1f);
+        }
+        while (!solved)
+        {
+            yield return true;
         }
     }
 }
